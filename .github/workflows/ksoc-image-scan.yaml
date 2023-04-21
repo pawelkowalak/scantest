@@ -18,6 +18,6 @@ jobs:
           push: false
           load: true
       - name: KSOC Image Scan
-        uses: ksoclabs/image-scan-action@image-scan
+        uses: ksoclabs/image-scan-action@v0.0.1
         with:
           image: "localbuild/testimage:latest"
