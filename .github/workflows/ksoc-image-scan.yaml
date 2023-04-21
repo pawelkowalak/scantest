@@ -1,0 +1,15 @@
+name: ksoc-image-scan
+
+on:
+  pull_request:
+
+jobs:
+  ksoc-image-scan:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: KSOC Image Scan
+        uses: ksoclabs/image-scan-action@image-scan
