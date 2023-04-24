@@ -1,0 +1,17 @@
+name: ksoc-guard
+
+on:
+  pull_request:
+
+jobs:
+  ksoc-guard:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: KSOC Guard
+        uses: ksoclabs/guard-action@v0.0.8
+        with:
+          policy_dir: /policies
