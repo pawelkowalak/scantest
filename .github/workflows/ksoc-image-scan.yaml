@@ -19,4 +19,4 @@ jobs:
         uses: ksoclabs/image-scan-action@use-ksoc-docker-image
         with:
           image: "localbuild/testimage:latest"
-          fail_on_severity: medium
+          fail_on_severity: low

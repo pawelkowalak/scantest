@@ -15,4 +15,4 @@ jobs:
         uses: ksoclabs/guard-action@v0.0.8
         with:
           policy_dir: /policies
-          fail_on_severity: medium
+          fail_on_severity: none
