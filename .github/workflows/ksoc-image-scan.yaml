@@ -16,7 +16,7 @@ jobs:
           push: false
           load: true
       - name: KSOC Image Scan
-        uses: ksoclabs/image-scan-action@v0.0.1
+        uses: ksoclabs/image-scan-action@use-ksoc-docker-image
         with:
           image: "localbuild/testimage:latest"
           fail_on_severity: medium
