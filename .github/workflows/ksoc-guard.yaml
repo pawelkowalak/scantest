@@ -1,9 +1,6 @@
 name: ksoc-guard
 
-on:
-  merge:
-    branches:
-      - master
+on: [push]
 
 jobs:
   ksoc-guard:
