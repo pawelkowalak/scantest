@@ -1,7 +1,9 @@
 name: ksoc-guard
 
 on:
-  pull_request:
+  merge:
+    branches:
+      - master
 
 jobs:
   ksoc-guard:
