@@ -17,6 +17,7 @@ jobs:
           load: true
       - name: KSOC Image Scan
         uses: ksoclabs/image-scan-action@sarif-support
+        id: scan
         with:
           image: "localbuild/testimage:latest"
           fail_on_severity: medium
@@ -24,3 +25,7 @@ jobs:
 #          ignore_cves: |
 #            CVE-2023-0466
 #            CVE-2023-0467
+      - name: upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
