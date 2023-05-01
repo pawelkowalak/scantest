@@ -1,7 +1,6 @@
 name: ksoc-image-scan
 
-on:
-  pull_request:
+on: [push]
 
 jobs:
   ksoc-image-scan:
