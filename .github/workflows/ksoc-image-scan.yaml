@@ -23,7 +23,7 @@ jobs:
         uses: ksoclabs/image-scan-action@sarif-support
         id: scan
         with:
-          image: "localbuild/testimage:latest"
+          image: localbuild/testimage:latest
           fail_on_severity: medium
           format: sarif
 #          ignore_cves: |
