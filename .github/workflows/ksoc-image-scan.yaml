@@ -16,10 +16,11 @@ jobs:
           push: false
           load: true
       - name: KSOC Image Scan
-        uses: ksoclabs/image-scan-action@ignore-cves
+        uses: ksoclabs/image-scan-action@sarif-support
         with:
           image: "localbuild/testimage:latest"
-          fail_on_severity: low
+          fail_on_severity: medium
+          format: sarif
 #          ignore_cves: |
 #            CVE-2023-0466
 #            CVE-2023-0467
