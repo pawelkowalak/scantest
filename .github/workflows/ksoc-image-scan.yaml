@@ -1,0 +1,33 @@
+name: ksoc-image-scan
+
+on:
+  pull_request:
+
+jobs:
+  ksoc-image-scan:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: build local container
+        uses: docker/build-push-action@v4
+        with:
+          tags: localbuild/testimage:latest
+          push: false
+          load: true
+      - name: KSOC Image Scan
+        uses: ksoclabs/image-scan-action@sarif-support
+        id: scan
+        with:
+          image: "localbuild/testimage:latest"
+          fail_on_severity: medium
+          format: sarif
+#          ignore_cves: |
+#            CVE-2023-0466
+#            CVE-2023-0467
+      - name: upload Anchore scan SARIF report
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
