@@ -20,6 +20,6 @@ jobs:
         with:
           image: "localbuild/testimage:latest"
           fail_on_severity: low
-          ignore_cves: |
-            CVE-2023-0466
-            CVE-2023-0467
+#          ignore_cves: |
+#            CVE-2023-0466
+#            CVE-2023-0467
