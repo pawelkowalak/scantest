@@ -5,6 +5,10 @@ on: [push]
 jobs:
   ksoc-image-scan:
     permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
       contents: read
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +31,8 @@ jobs:
 #            CVE-2023-0467
       - name: upload Anchore scan SARIF report
         if: success() || failure()
+#        permissions:
+#          contents: write
         uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
