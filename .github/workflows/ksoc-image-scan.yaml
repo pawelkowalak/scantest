@@ -16,7 +16,10 @@ jobs:
           push: false
           load: true
       - name: KSOC Image Scan
-        uses: ksoclabs/image-scan-action@summary-in-output
+        uses: ksoclabs/image-scan-action@ignore-cves
         with:
           image: "localbuild/testimage:latest"
           fail_on_severity: low
+          ignore_cves: |
+            CVE-2023-0466
+            CVE-2023-0467
