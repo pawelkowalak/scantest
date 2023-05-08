@@ -5,6 +5,7 @@ on: [push]
 jobs:
   ksoc-guard:
     permissions:
+      security-events: write
       contents: read
     runs-on: ubuntu-latest
     steps:
@@ -16,3 +17,8 @@ jobs:
           policy_dir: /policies
           fail_on_severity: none
           format: sarif
+      - name: Upload Image Scan SARIF Report
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
