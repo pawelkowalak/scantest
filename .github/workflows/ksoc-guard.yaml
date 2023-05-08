@@ -19,6 +19,7 @@ jobs:
           fail_on_severity: medium
           format: sarif
       - name: Inspect action SARIF report
+        if: success() || failure()
         run: cat ${{ steps.guard.outputs.sarif }}
       - name: Upload Image Scan SARIF Report
         if: success() || failure()
