@@ -1,6 +1,6 @@
 name: ksoc-guard
 
-on: [push]
+on: [ push ]
 
 jobs:
   ksoc-guard:
@@ -12,6 +12,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: KSOC Guard
+        id: guard
         uses: ksoclabs/guard-action@sarif-support
         with:
           policy_dir: /policies
@@ -21,4 +22,4 @@ jobs:
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@v2
         with:
-          sarif_file: ${{ steps.scan.outputs.sarif }}
+          sarif_file: ${{ steps.guard.outputs.sarif }}
