@@ -1,17 +1,25 @@
 name: ksoc-guard
 
-on: [push]
+on: [ push ]
 
 jobs:
   ksoc-guard:
     permissions:
+      security-events: write
       contents: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: KSOC Guard
-        uses: ksoclabs/guard-action@v0.0.8
+        id: guard
+        uses: ksoclabs/guard-action@sarif-support
         with:
           policy_dir: /policies
-          fail_on_severity: none
+          format: sarif
+      - name: Upload Image Scan SARIF Report
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.guard.outputs.sarif }}
+          checkout_path: /github/workspace
