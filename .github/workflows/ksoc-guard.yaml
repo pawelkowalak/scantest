@@ -11,7 +11,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: KSOC Guard
-        uses: ksoclabs/guard-action@v0.0.8
+        uses: ksoclabs/guard-action@sarif-support
         with:
           policy_dir: /policies
           fail_on_severity: none
+          format: sarif
