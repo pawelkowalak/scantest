@@ -17,6 +17,9 @@ jobs:
         with:
           policy_dir: /policies
           format: sarif
+      - name: Print results
+        if: success() || failure()
+        run: cat "${{ steps.guard.outputs.sarif }}"
       - name: Upload Image Scan SARIF Report
         if: success() || failure()
         uses: github/codeql-action/upload-sarif@v2
