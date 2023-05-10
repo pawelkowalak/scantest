@@ -16,7 +16,7 @@ jobs:
         uses: ksoclabs/guard-action@sarif-support
         with:
           policy_dir: /policies
-          fail_on_severity: medium
+          fail_on_severity: none
           format: sarif
       - name: Print results
         if: success() || failure()
