@@ -1,0 +1,19 @@
+name: ksoc-image-scan
+
+on: [push]
+
+jobs:
+  ksoc-image-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build local container
+        uses: docker/build-push-action@v4
+        with:
+          tags: localbuild/testimage:latest
+          push: false
+          load: true
+      - name: KSOC Image Scan
+        uses: ksoclabs/image-scan-action@v0.0.4
+        id: scan
+        with:
+          image: localbuild/testimage:latest
