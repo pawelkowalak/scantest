@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   ksoc-image-scan:
+    permissions:
+      security-events: write
     runs-on: ubuntu-latest
     steps:
       - name: build local container
@@ -17,3 +19,9 @@ jobs:
         id: scan
         with:
           image: localbuild/testimage:latest
+          format: sarif
+      - name: Upload Image Scan SARIF Report
+        if: success() || failure()
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
