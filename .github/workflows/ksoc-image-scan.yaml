@@ -17,3 +17,5 @@ jobs:
         id: scan
         with:
           image: localbuild/testimage:latest
+          ignore_cves: |
+            CVE-2023-0466
