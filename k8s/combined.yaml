@@ -27,6 +27,8 @@ spec:
     spec:
       containers:
       - name: nginxcontainer-combined
+        securityContext:
+          allowPrivilegeEscalation: false
         image: nginx:latest
         imagePullPolicy: Always
         ports:
