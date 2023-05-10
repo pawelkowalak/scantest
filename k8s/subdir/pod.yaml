@@ -3,8 +3,12 @@ kind: Pod
 metadata:
   name: nginx
 spec:
+  securityContext:
+    runAsUser: 1000
   containers:
   - name: nginx
-    image: nginx:latest
+    securityContext:
+      allowPrivilegeEscalation: false
+    image: nginx:1.23.4
     ports:
     - containerPort: 80
